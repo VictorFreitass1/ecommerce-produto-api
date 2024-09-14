@@ -1,15 +1,15 @@
 ﻿using Ecommerce.Produto.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Produto.Infrastructure.Data.AppContext
+namespace Ecommerce.Produto.Data.AppData
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext: DbContext
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
+            
         }
 
-        public DbSet<ProdutoEntity> Produto { get; set; }
         public DbSet<CategoriaEntity> Categoria { get; set; }
     }
 }

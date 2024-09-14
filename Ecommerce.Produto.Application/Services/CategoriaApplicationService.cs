@@ -1,40 +1,45 @@
-﻿using Ecommerce.Produto.Domain.Dtos;
+﻿using Ecommerce.Produto.Domain.Entities;
 using Ecommerce.Produto.Domain.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Ecommerce.Produto.Application.Services
 {
     public class CategoriaApplicationService : ICategoriaApplicationService
     {
-        private readonly ICategoriaRepository _repository;
+        private readonly ICategoriaRepository _categoriaRepository;
 
-        public CategoriaApplicationService(ICategoriaRepository repository)
+        public CategoriaApplicationService(ICategoriaRepository categoriaRepository)
         {
-            _repository = repository;
+            _categoriaRepository = categoriaRepository;
         }
 
-        public CategoriaDto AdicionarCategoria(CategoriaDto entity)
+        public CategoriaEntity? DeletarDadosCategoria(int id)
         {
-            throw new NotImplementedException();
+            return _categoriaRepository.DeletarDados(id);  
         }
 
-        public CategoriaDto EditarCategoria(CategoriaDto entity)
+        public CategoriaEntity? EditarDadosCategoria(CategoriaEntity entity)
         {
-            throw new NotImplementedException();
+            return _categoriaRepository.EditarDados(entity);
         }
 
-        public CategoriaDto ObterCategoriaPorId(int id)
+        public CategoriaEntity? ObterCategoriaPorId(int id)
         {
-            throw new NotImplementedException();
+            return _categoriaRepository.ObterPorId(id);
         }
 
-        public IEnumerable<CategoriaDto> ObterTodasCategorias()
+        public IEnumerable<CategoriaEntity> ObterTodasCategorias()
         {
-            throw new NotImplementedException();
+            return _categoriaRepository.ObterTodos();
         }
 
-        public CategoriaDto RemoverCategoria(CategoriaDto entity)
+        public CategoriaEntity? SalvarDadosCategoria(CategoriaEntity entity)
         {
-            throw new NotImplementedException();
+            return _categoriaRepository.SalvarDados(entity);
         }
     }
 }

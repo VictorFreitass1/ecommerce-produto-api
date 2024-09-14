@@ -4,10 +4,10 @@ namespace Ecommerce.Produto.Domain.Interfaces
 {
     public interface ICategoriaRepository
     {
-        CategoriaEntity ObterPorId(int id);
         IEnumerable<CategoriaEntity> ObterTodos();
-        CategoriaEntity Adicionar(CategoriaEntity entity);
-        CategoriaEntity Editar(CategoriaEntity entity);
-        CategoriaEntity Remover(CategoriaEntity entity);
+        CategoriaEntity? ObterPorId(int id);
+        CategoriaEntity? SalvarDados(CategoriaEntity entity);
+        CategoriaEntity? EditarDados(CategoriaEntity entity);
+        CategoriaEntity? DeletarDados(int id);
     }
 }

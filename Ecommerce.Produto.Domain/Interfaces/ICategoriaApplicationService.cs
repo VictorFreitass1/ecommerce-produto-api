@@ -1,13 +1,13 @@
-﻿using Ecommerce.Produto.Domain.Dtos;
+﻿using Ecommerce.Produto.Domain.Entities;
 
 namespace Ecommerce.Produto.Domain.Interfaces
 {
     public interface ICategoriaApplicationService
     {
-        CategoriaDto ObterCategoriaPorId(int id);
-        IEnumerable<CategoriaDto> ObterTodasCategorias();
-        CategoriaDto AdicionarCategoria(CategoriaDto entity);
-        CategoriaDto EditarCategoria(CategoriaDto entity);
-        CategoriaDto RemoverCategoria(CategoriaDto entity);
+        IEnumerable<CategoriaEntity> ObterTodasCategorias();
+        CategoriaEntity? ObterCategoriaPorId(int id);
+        CategoriaEntity? SalvarDadosCategoria(CategoriaEntity entity);
+        CategoriaEntity? EditarDadosCategoria(CategoriaEntity entity);
+        CategoriaEntity? DeletarDadosCategoria(int id);
     }
 }
