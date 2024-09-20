@@ -1,19 +1,9 @@
-using Ecommerce.Produto.Application.Services;
-using Ecommerce.Produto.Data.AppData;
-using Ecommerce.Produto.Data.Repositories;
-using Ecommerce.Produto.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using Ecommerce.Produto.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Bootstrap.Start(builder.Services, builder.Configuration);
 
-builder.Services.AddDbContext<ApplicationContext>(options => {
-    options.UseOracle(builder.Configuration["ConnectionStrings:Oracle"]);
-});
-
-
-builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
-builder.Services.AddTransient<ICategoriaApplicationService, CategoriaApplicationService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
