@@ -35,6 +35,13 @@ namespace Ecommerce.Produto.Application.Dtos
 
             RuleFor(x => x.Descricao)
                 .NotEmpty().WithMessage(x => $"O campo {nameof(x.Descricao)} não pode ser vazio");
+
+            RuleFor(x => x.Quantidade)
+                .GreaterThan(0).WithMessage(x => $"O campo {nameof(x.Quantidade)} deve ser maior que zero");
+
+            RuleFor(x => x.CategoriaId)
+                .GreaterThan(0).WithMessage(x => $"O campo {nameof(x.CategoriaId)} deve conter um ID existente");
+
         }
     }
 }
