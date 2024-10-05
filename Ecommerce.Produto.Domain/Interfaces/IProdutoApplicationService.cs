@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Produto.Domain.Entities;
+using Ecommerce.Produto.Domain.Interfaces.Dtos;
 
 namespace Ecommerce.Produto.Domain.Interfaces
 {
@@ -6,8 +7,8 @@ namespace Ecommerce.Produto.Domain.Interfaces
     {
         IEnumerable<ProdutoEntity> ObterTodosProdutos();
         ProdutoEntity? ObterProdutoPorId(int id);
-        ProdutoEntity? SalvarDadosProduto(ProdutoEntity entity);
-        ProdutoEntity? EditarDadosProduto(ProdutoEntity entity);
+        ProdutoEntity? SalvarDadosProduto(IProdutoDto entity);
+        ProdutoEntity? EditarDadosProduto(int id, IProdutoDto entity);
         ProdutoEntity? DeletarDadosProduto(int id);
     }
 }

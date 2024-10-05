@@ -1,6 +1,8 @@
-﻿using Ecommerce.Produto.Domain.Entities;
+﻿using Ecommerce.Produto.Application.Dtos;
+using Ecommerce.Produto.Domain.Entities;
 using Ecommerce.Produto.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Ecommerce.Produto.API.Controllers
 {
@@ -56,31 +58,53 @@ namespace Ecommerce.Produto.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [Produces<ProdutoEntity>]
-        public IActionResult Post(ProdutoEntity entity)
+        public IActionResult Post(ProdutoDto entity)
         {
-            var categorias = _produtoApplicationService.SalvarDadosProduto(entity);
+            try
+            {
+                var categorias = _produtoApplicationService.SalvarDadosProduto(entity);
 
-            if (categorias is not null)
-                return Ok(categorias);
+                if (categorias is not null)
+                    return Ok(categorias);
 
-            return BadRequest("Não foi possivel salvar os dados");
+                return BadRequest("Não foi possivel salvar os dados");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new{
+                    Error = ex.Message,
+                    Status = HttpStatusCode.BadRequest,
+                });
+            }
         }
 
         /// <summary>
         /// Metodos para editar a produto
-        /// </summary>
+        /// </summary
+        /// <param name="id"> Identificador do produto</param>
         /// <param name="entity"> Modelo de dados do produto</param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPut("{id}")]
         [Produces<ProdutoEntity>]
-        public IActionResult Put(ProdutoEntity entity)
+        public IActionResult Put(int id, ProdutoDto entity)
         {
-            var categorias = _produtoApplicationService.EditarDadosProduto(entity);
+            try
+            {
+                var categorias = _produtoApplicationService.EditarDadosProduto(id, entity);
 
-            if (categorias is not null)
-                return Ok(categorias);
+                if (categorias is not null)
+                    return Ok(categorias);
 
-            return BadRequest("Não foi possivel editar os dados");
+                return BadRequest("Não foi possivel editar os dados");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    Error = ex.Message,
+                    Status = HttpStatusCode.BadRequest,
+                });
+            }
         }
 
         /// <summary>
